@@ -1,0 +1,67 @@
+%global git0 https://github.com/containers/%{name}
+%global commit0 79c70fd91a67861a78d336b30ce46ce34fc6712d
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+
+Name: fuse-overlayfs
+Version: 0.1
+Release: 4.dev.git%{shortcommit0}%{?dist}
+Summary: FUSE overlay+shiftfs implementation for rootless containers
+License: GPLv3+
+URL: %{git0}
+Source0: %{git0}/archive/%{commit0}/%{name}-%{shortcommit0}.tar.gz
+BuildRequires: autoconf
+BuildRequires: automake
+BuildRequires: fuse3-devel
+BuildRequires: gcc
+BuildRequires: git
+BuildRequires: make
+Provides: bundled(gnulib) = cb634d40c7b9bbf33fa5198d2e27fdab4c0bf143
+
+%description
+%{summary}.
+
+%package devel
+Summary: %{summary}
+BuildArch: noarch
+
+%description devel
+%{summary}
+
+This package contains library source intended for
+building other packages which use import path with
+%{import_path} prefix.
+
+%prep
+%autosetup -Sgit -n %{name}-%{commit0}
+
+%build
+./autogen.sh
+./configure --prefix=%{_usr} --libdir=%{_libdir}
+%{__make}
+
+%install
+make DESTDIR=%{buildroot} install
+
+%check
+
+#define license tag if not already defined
+%{!?_licensedir:%global license %doc}
+
+%files
+%license COPYING
+%doc README.md
+%{_bindir}/%{name}
+
+%changelog
+* Mon Jul 30 2018 Lokesh Mandvekar <lsm5@fedoraproject.org> - 0.1-4.dev.git79c70fd
+- Resolves: #1609598 - initial upload to Fedora
+- bundled gnulib
+
+* Mon Jul 30 2018 Lokesh Mandvekar <lsm5@fedoraproject.org> - 0.1-3.dev.git79c70fd
+- correct license field
+
+* Mon Jul 30 2018 Lokesh Mandvekar <lsm5@fedoraproject.org> - 0.1-2.dev.git79c70fd
+- fix license
+
+* Sun Jul 29 2018 Lokesh Mandvekar <lsm5@fedoraproject.org> - 0.1-1.dev.git13575b6
+- First package for Fedora
