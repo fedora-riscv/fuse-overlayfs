@@ -1,10 +1,10 @@
 %global git0 https://github.com/containers/%{name}
-%global commit0 3d48bf9a82b7838bff13f743b632fc74805267f8
+%global commit0 f48e1eff7a3a16c5f12c9f464bab2de0b8f56fdb
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 Name: fuse-overlayfs
 Version: 0.1
-Release: 6.dev.git%{shortcommit0}%{?dist}
+Release: 7.dev.git%{shortcommit0}%{?dist}
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
 URL: %{git0}
@@ -54,6 +54,9 @@ make DESTDIR=%{buildroot} install
 %{_mandir}/man1/*
 
 %changelog
+* Tue Dec 18 2018 Giuseppe Scrivano <gscrivan@redhat.com> - 0.1-7.dev.gitf48e1ef
+- built commit f48e1ef
+
 * Fri Nov 23 2018 Giuseppe Scrivano <gscrivan@redhat.com> - 0.1-6.dev.git3d48bf9
 - built commit 3d48bf9
 
