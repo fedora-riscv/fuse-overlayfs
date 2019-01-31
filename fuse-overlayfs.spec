@@ -4,7 +4,7 @@
 
 Name: fuse-overlayfs
 Version: 0.3
-Release: 1.dev.git%{shortcommit0}%{?dist}
+Release: 2.dev.git%{shortcommit0}%{?dist}
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
 URL: %{git0}
@@ -54,6 +54,9 @@ make DESTDIR=%{buildroot} install
 %{_mandir}/man1/*
 
 %changelog
+* Thu Jan 31 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.3-2.dev.git6d269aa
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
+
 * Tue Jan 15 2019 Giuseppe Scrivano <gscrivan@redhat.com> - 0.3-1.dev.git6d269aa
 - built commit 6d269aa
 
