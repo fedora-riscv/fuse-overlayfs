@@ -4,7 +4,7 @@
 
 Name: fuse-overlayfs
 Version: 0.3
-Release: 5.dev.git%{shortcommit0}%{?dist}
+Release: 6.dev.git%{shortcommit0}%{?dist}
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
 URL: %{git0}
@@ -41,6 +41,11 @@ building other packages which use import path with
 
 %install
 make DESTDIR=%{buildroot} install
+install -d %{buildroot}/usr/lib/modules-load.d
+echo fuse > %{buildroot}/usr/lib/modules-load.d/fuse-overlayfs.conf
+
+%post
+modprobe fuse
 
 %check
 
@@ -52,8 +57,12 @@ make DESTDIR=%{buildroot} install
 %doc README.md
 %{_bindir}/%{name}
 %{_mandir}/man1/*
+%{_prefix}/lib/modules-load.d/fuse-overlayfs.conf
 
 %changelog
+* Thu Mar 21 2019 Dan Walsh <dwalsh@redhat.com> - 0.3-6.dev.git8ec68ae
+- Add loading of fuse file system
+
 * Sun Mar 10 2019 Giuseppe Scrivano <gscrivan@redhat.com> - 0.3-5.dev.git8ec68ae
 - built commit 8ec68ae
 
