@@ -4,7 +4,7 @@
 
 Name: fuse-overlayfs
 Version: 0.3
-Release: 6.dev.git%{shortcommit0}%{?dist}
+Release: 7.dev.git%{shortcommit0}%{?dist}
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
 URL: %{git0}
@@ -15,6 +15,7 @@ BuildRequires: fuse3-devel
 BuildRequires: gcc
 BuildRequires: git
 BuildRequires: make
+Requires: kmod
 Provides: bundled(gnulib) = cb634d40c7b9bbf33fa5198d2e27fdab4c0bf143
 
 %description
@@ -45,7 +46,7 @@ install -d %{buildroot}/usr/lib/modules-load.d
 echo fuse > %{buildroot}/usr/lib/modules-load.d/fuse-overlayfs.conf
 
 %post
-modprobe fuse
+modprobe fuse > /dev/null 2>&1 || :
 
 %check
 
