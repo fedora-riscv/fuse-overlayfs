@@ -61,8 +61,8 @@ modprobe fuse > /dev/null 2>&1 || :
 %{_prefix}/lib/modules-load.d/fuse-overlayfs.conf
 
 %changelog
-* Thu Jun 13 2019 Giuseppe Scrivano <gscrivan@redhat.com> - 0.4.1-0.dev.git1ff7c6
-- built commit 1ff7c6
+* Thu Jun 13 2019 Giuseppe Scrivano <gscrivan@redhat.com> - 0.4.1-0.dev.git1ff7c64
+- built commit 1ff7c64
 
 * Thu Jun 06 2019 Giuseppe Scrivano <gscrivan@redhat.com> - 0.4-1.dev.git8d92da6
 - built commit 8d92da6
