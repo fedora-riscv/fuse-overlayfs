@@ -1,10 +1,10 @@
 %global git0 https://github.com/containers/%{name}
-%global commit0 95120c05a03820ab1fab0787a3e6343282e16af2
+%global commit0 2393f6c48d9487029878a62d172917238dde5377
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 Name: fuse-overlayfs
-Version: 0.4.2
-Release: 0.9.dev.git%{shortcommit0}%{?dist}
+Version: 0.5
+Release: 4%{?dist}
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
 URL: %{git0}
@@ -42,8 +42,8 @@ building other packages which use import path with
 
 %install
 make DESTDIR=%{buildroot} install
-install -d %{buildroot}/usr/lib/modules-load.d
-echo fuse > %{buildroot}/usr/lib/modules-load.d/fuse-overlayfs.conf
+install -d %{buildroot}%{_usr}/lib/modules-load.d
+echo fuse > %{buildroot}%{_usr}/lib/modules-load.d/fuse-overlayfs.conf
 
 %post
 modprobe fuse > /dev/null 2>&1 || :
@@ -58,32 +58,21 @@ modprobe fuse > /dev/null 2>&1 || :
 %doc README.md
 %{_bindir}/%{name}
 %{_mandir}/man1/*
-%{_prefix}/lib/modules-load.d/fuse-overlayfs.conf
+%{_usr}/lib/modules-load.d/fuse-overlayfs.conf
 
 %changelog
-* Mon Jul 29 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.4.2-0.9.dev.git95120c0
-- autobuilt 95120c0
+* Tue Jul 30 2019 Giuseppe Scrivano <gscrivan@redhat.com> - 0.5
+- built commit v0.5
 
-* Mon Jul 29 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.4.2-0.8.dev.gitf0d76ef
-- autobuilt f0d76ef
+* Mon Jul 15 2019 Lokesh Mandvekar <lsm5@fedoraproject.org> - 0.4.1-4
+- update release tag
 
-* Fri Jul 26 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.4.2-0.7.dev.git9a2ef04
-- autobuilt 9a2ef04
+* Mon Jul 15 2019 Lokesh Mandvekar <lsm5@fedoraproject.org> - 0.4.1-3.git7bc2dd9
+- update release tag
 
-* Thu Jul 25 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.4.2-0.6.dev.git9c77da7
-- autobuilt 9c77da7
-
-* Wed Jul 24 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.4.2-0.5.dev.gitbd9eb8d
-- autobuilt bd9eb8d
-
-* Tue Jul 23 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.4.2-0.4.dev.gitd99d868
-- autobuilt d99d868
-
-* Tue Jul 23 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.4.2-0.3.dev.git95e1d01
-- autobuilt 95e1d01
-
-* Tue Jul 09 2019 Lokesh Mandvekar <lsm5@fedoraproject.org> - 0.4.2-0.2.dev.git7bc2dd9
-- modify release tag, hook up package to autobuilder
+* Mon Jul 15 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.4.1-2.dev.git7bc2dd9
+- bump to 0.4.1
+- autobuilt tag v0.
 
 * Fri Jun 21 2019 Giuseppe Scrivano <gscrivan@redhat.com> - 0.4.2-0.dev.git7bc2dd9
 - built commit 7bc2dd9
