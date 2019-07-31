@@ -8,7 +8,7 @@
 
 Name: fuse-overlayfs
 Version: 0.5
-Release: 1.dev.git%{shortcommit0}%{?dist}
+Release: 1.1.dev.git%{shortcommit0}%{?dist}
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
 URL: %{git0}
