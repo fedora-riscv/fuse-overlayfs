@@ -2,9 +2,13 @@
 %global commit0 2393f6c48d9487029878a62d172917238dde5377
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
+# Used for comparing with latest upstream tag
+# to decide whether to autobuild (non-rawhide only)
+%global built_tag v0.5
+
 Name: fuse-overlayfs
 Version: 0.5
-Release: 4%{?dist}
+Release: 1.dev.git%{shortcommit0}%{?dist}
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
 URL: %{git0}
