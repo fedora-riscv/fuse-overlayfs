@@ -4,11 +4,11 @@
 
 # Used for comparing with latest upstream tag
 # to decide whether to autobuild (non-rawhide only)
-%global built_tag v0.5
+%global built_tag v0.5.1
 
 Name: fuse-overlayfs
 Version: 0.5.1
-Release: 1.dev.git%{shortcommit0}%{?dist}
+Release: 2.dev.git%{shortcommit0}%{?dist}
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
 URL: %{git0}
@@ -65,6 +65,9 @@ modprobe fuse > /dev/null 2>&1 || :
 %{_usr}/lib/modules-load.d/fuse-overlayfs.conf
 
 %changelog
+* Thu Aug 08 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.5.1-2.dev.git58e3f7c
+- rebuilt
+
 * Thu Aug 08 2019 Giuseppe Scrivano <gscrivan@redhat.com> - 0.5.1
 - built commit v0.5.1
 
