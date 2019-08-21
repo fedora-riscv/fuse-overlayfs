@@ -8,7 +8,7 @@
 
 Name: fuse-overlayfs
 Version: 0.5.2
-Release: 0.2.dev.git%{shortcommit0}%{?dist}
+Release: 1.1.dev.git%{shortcommit0}%{?dist}
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
 URL: %{git0}
@@ -65,6 +65,9 @@ modprobe fuse > /dev/null 2>&1 || :
 %{_usr}/lib/modules-load.d/fuse-overlayfs.conf
 
 %changelog
+* Wed Aug 21 2019 Lokesh Mandvekar <lsm5@fedoraproject.org> - 0.5.2-1.1.dev.gitf8ba9ad
+- change release tag to preserve upgrade path
+
 * Wed Aug 21 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.5.2-0.2.dev.gitf8ba9ad
 - autobuilt f8ba9ad
 
