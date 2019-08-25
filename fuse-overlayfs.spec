@@ -1,5 +1,5 @@
 %global git0 https://github.com/containers/%{name}
-%global commit0 f8ba9ade20d107d3e6a3dc11b6e01116894d2387
+%global commit0 43b641d7f2087b97b3f597ef2b6b8c1c74d6a15d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 # Used for comparing with latest upstream tag
@@ -7,8 +7,8 @@
 %global built_tag v0.5
 
 Name: fuse-overlayfs
-Version: 0.5.2
-Release: 1.1.dev.git%{shortcommit0}%{?dist}
+Version: 0.6
+Release: 2.0.dev.git%{shortcommit0}%{?dist}
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
 URL: %{git0}
@@ -65,6 +65,10 @@ modprobe fuse > /dev/null 2>&1 || :
 %{_usr}/lib/modules-load.d/fuse-overlayfs.conf
 
 %changelog
+* Sun Aug 25 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.6-2.0.dev.git43b641d
+- bump to 0.6
+- autobuilt 43b641d
+
 * Wed Aug 21 2019 Lokesh Mandvekar <lsm5@fedoraproject.org> - 0.5.2-1.1.dev.gitf8ba9ad
 - change release tag to preserve upgrade path
 
