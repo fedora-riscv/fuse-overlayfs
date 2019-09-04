@@ -19,6 +19,7 @@ BuildRequires: fuse3-devel
 BuildRequires: gcc
 BuildRequires: git
 BuildRequires: make
+BuildRequires: systemd-rpm-macros
 Requires: kmod
 Provides: bundled(gnulib) = cb634d40c7b9bbf33fa5198d2e27fdab4c0bf143
 
@@ -46,8 +47,8 @@ building other packages which use import path with
 
 %install
 make DESTDIR=%{buildroot} install
-install -d %{buildroot}%{_usr}/lib/modules-load.d
-echo fuse > %{buildroot}%{_usr}/lib/modules-load.d/fuse-overlayfs.conf
+install -d %{buildroot}%{_modulesloaddir}
+echo fuse > %{buildroot}%{_modulesloaddir}/fuse-overlayfs.conf
 
 %post
 modprobe fuse > /dev/null 2>&1 || :
@@ -62,7 +63,7 @@ modprobe fuse > /dev/null 2>&1 || :
 %doc README.md
 %{_bindir}/%{name}
 %{_mandir}/man1/*
-%{_usr}/lib/modules-load.d/fuse-overlayfs.conf
+%{_modulesloaddir}/fuse-overlayfs.conf
 
 %changelog
 * Wed Sep 04 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.6.2-2.0.dev.git67a4afe
