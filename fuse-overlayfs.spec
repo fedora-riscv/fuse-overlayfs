@@ -8,7 +8,7 @@
 
 Name: fuse-overlayfs
 Version: 0.6.2
-Release: 5.0.dev.git%{shortcommit0}%{?dist}
+Release: 6.0.dev.git%{shortcommit0}%{?dist}
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
 URL: %{git0}
@@ -22,6 +22,7 @@ BuildRequires: make
 BuildRequires: systemd-rpm-macros
 Requires: kmod
 Provides: bundled(gnulib) = cb634d40c7b9bbf33fa5198d2e27fdab4c0bf143
+Requires: fuse3
 
 %description
 %{summary}.
@@ -66,6 +67,9 @@ modprobe fuse > /dev/null 2>&1 || :
 %{_modulesloaddir}/fuse-overlayfs.conf
 
 %changelog
+* Fri Sep 13 2019 Jindrich Novy <jnovy@redhat.com> - 0.6.2-6.0.dev.git66e01c8
+- require fuse3 so that fuse-overlayfs will pull in also /usr/bin/fusermount3
+
 * Fri Sep 13 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.6.2-5.0.dev.git66e01c8
 - autobuilt 66e01c8
 
