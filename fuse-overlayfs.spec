@@ -68,7 +68,7 @@ modprobe fuse > /dev/null 2>&1 || :
 
 %changelog
 * Fri Sep 13 2019 Jindrich Novy <jnovy@redhat.com> - 0.6.2-6.0.dev.git66e01c8
-- require fuse3 so that fuse-overlayfs will pull in also /usr/bin/fusermount3
+- require fuse3 so that fuse-overlayfs will pull in /usr/bin/fusermount3
 
 * Fri Sep 13 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.6.2-5.0.dev.git66e01c8
 - autobuilt 66e01c8
