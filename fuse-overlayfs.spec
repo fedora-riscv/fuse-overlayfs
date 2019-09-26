@@ -1,14 +1,14 @@
 %global git0 https://github.com/containers/%{name}
-%global commit0 67a4afe6e5cfdd67731b79eb5b688be4746f25ec
+%global commit0 46c0f8e650f8faeff4126e59e33c899d12ef543a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 # Used for comparing with latest upstream tag
 # to decide whether to autobuild (non-rawhide only)
-%global built_tag v0.6.2
+%global built_tag v0.6.3
 
 Name: fuse-overlayfs
-Version: 0.6.2
-Release: 2.git%{shortcommit0}%{?dist}
+Version: 0.6.3
+Release: 2.0.dev.git%{shortcommit0}%{?dist}
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
 URL: %{git0}
@@ -19,8 +19,10 @@ BuildRequires: fuse3-devel
 BuildRequires: gcc
 BuildRequires: git
 BuildRequires: make
+BuildRequires: systemd-rpm-macros
 Requires: kmod
 Provides: bundled(gnulib) = cb634d40c7b9bbf33fa5198d2e27fdab4c0bf143
+Requires: fuse3
 
 %description
 %{summary}.
@@ -46,8 +48,8 @@ building other packages which use import path with
 
 %install
 make DESTDIR=%{buildroot} install
-install -d %{buildroot}%{_usr}/lib/modules-load.d
-echo fuse > %{buildroot}%{_usr}/lib/modules-load.d/fuse-overlayfs.conf
+install -d %{buildroot}%{_modulesloaddir}
+echo fuse > %{buildroot}%{_modulesloaddir}/fuse-overlayfs.conf
 
 %post
 modprobe fuse > /dev/null 2>&1 || :
@@ -62,33 +64,68 @@ modprobe fuse > /dev/null 2>&1 || :
 %doc README.md
 %{_bindir}/%{name}
 %{_mandir}/man1/*
-%{_usr}/lib/modules-load.d/fuse-overlayfs.conf
+%{_modulesloaddir}/fuse-overlayfs.conf
 
 %changelog
-* Wed Sep 04 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.6.2-2.git67a4afe
-- bump to v0.6.2
+* Thu Sep 26 2019 RH Container Bot <rhcontainerbot@fedoraproject.org> - 0.6.3-2.0.dev.git46c0f8e
+- bump to 0.6.3
+- autobuilt 46c0f8e
+
+* Wed Sep 18 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.6.2-7.0.dev.gitb0a9bda
+- autobuilt b0a9bda
+
+* Fri Sep 13 2019 Jindrich Novy <jnovy@redhat.com> - 0.6.2-6.0.dev.git66e01c8
+- require fuse3 so that fuse-overlayfs will pull in /usr/bin/fusermount3
+
+* Fri Sep 13 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.6.2-5.0.dev.git66e01c8
+- autobuilt 66e01c8
+
+* Wed Sep 11 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.6.2-4.0.dev.git74fb3dd
+- autobuilt 74fb3dd
+
+* Mon Sep 09 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.6.2-3.0.dev.git16f39b1
+- autobuilt 16f39b1
+
+* Wed Sep 04 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.6.2-2.0.dev.git67a4afe
+- bump to 0.6.2
 - autobuilt 67a4afe
 
-* Mon Aug 26 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.6.1-2.gitc548530
-- bump to v0.6.1
+* Fri Aug 30 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.6.1-3.0.dev.gitcb4b35e
+- autobuilt cb4b35e
+
+* Mon Aug 26 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.6.1-2.0.dev.gitc548530
+- bump to 0.6.1
 - autobuilt c548530
 
-* Sun Aug 25 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.6-2.git43b641d
-- bump to v0.6
+* Sun Aug 25 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.6-2.0.dev.git43b641d
+- bump to 0.6
 - autobuilt 43b641d
 
-* Wed Aug 21 2019 Lokesh Mandvekar <lsm5@fedoraproject.org> - 0.5.2-3.git4dc60f0
-- v0.5.2 retagged
+* Wed Aug 21 2019 Lokesh Mandvekar <lsm5@fedoraproject.org> - 0.5.2-1.1.dev.gitf8ba9ad
+- change release tag to preserve upgrade path
 
-* Mon Aug 19 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.5.2-2.dev.git89b814d
-- bump to v0.5.2
+* Wed Aug 21 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.5.2-0.2.dev.gitf8ba9ad
+- autobuilt f8ba9ad
+
+* Mon Aug 19 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.5.2-0.1.dev.git4dc60f0
+- bump to 0.5.2
+- autobuilt 4dc60f0
+
+* Fri Aug 16 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.5.1-0.3.dev.git89b814d
 - autobuilt 89b814d
 
-* Thu Aug 08 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.5.1-2.dev.git58e3f7c
-- rebuilt
+* Mon Aug 12 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.5.1-0.2.dev.gitc756bbe
+- autobuilt c756bbe
 
-* Thu Aug 08 2019 Giuseppe Scrivano <gscrivan@redhat.com> - 0.5.1
-- built commit v0.5.1
+* Thu Aug 08 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.5.1-0.1.dev.git58e3f7c
+- bump to 0.5.1
+- autobuilt 58e3f7c
+
+* Tue Aug 06 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.5-3.1.dev.git80eb59d
+- autobuilt 80eb59d
+
+* Thu Aug 01 2019 Lokesh Mandvekar (Bot) <lsm5+bot@fedoraproject.org> - 0.5-2.1.dev.gitb92a654
+- autobuilt b92a654
 
 * Tue Jul 30 2019 Giuseppe Scrivano <gscrivan@redhat.com> - 0.5
 - built commit v0.5
