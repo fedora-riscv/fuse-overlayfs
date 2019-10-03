@@ -1,5 +1,5 @@
 %global git0 https://github.com/containers/%{name}
-%global commit0 1955ff671052f6301d34edd95a04e3552f1831b9
+%global commit0 504862881fc6d5dee63c3707a37e6464be0afaf0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 # Used for comparing with latest upstream tag
@@ -8,7 +8,7 @@
 
 Name: fuse-overlayfs
 Version: 0.6.3
-Release: 3.0.dev.git%{shortcommit0}%{?dist}
+Release: 4.0.dev.git%{shortcommit0}%{?dist}
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
 URL: %{git0}
@@ -67,6 +67,9 @@ modprobe fuse > /dev/null 2>&1 || :
 %{_modulesloaddir}/fuse-overlayfs.conf
 
 %changelog
+* Thu Oct 03 2019 RH Container Bot <rhcontainerbot@fedoraproject.org> - 0.6.3-4.0.dev.git5048628
+- autobuilt 5048628
+
 * Thu Oct 03 2019 RH Container Bot <rhcontainerbot@fedoraproject.org> - 0.6.3-3.0.dev.git1955ff6
 - autobuilt 1955ff6
 
