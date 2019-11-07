@@ -67,7 +67,7 @@ modprobe fuse > /dev/null 2>&1 || :
 %{_modulesloaddir}/fuse-overlayfs.conf
 
 %changelog
-* Nov 07 2019 Giuseppe Scrivano <gscrivan@redhat.com> - 0.7-1
+* Thu Nov 07 2019 Giuseppe Scrivano <gscrivan@redhat.com> - 0.7-1
 - bump to v0.7
 
 * Wed Oct 16 2019 RH Container Bot <rhcontainerbot@fedoraproject.org> - 0.6.5-2
