@@ -67,7 +67,7 @@ modprobe fuse > /dev/null 2>&1 || :
 %{_modulesloaddir}/fuse-overlayfs.conf
 
 %changelog
-* Thu Nov 29 2019 Giuseppe Scrivano <gscrivan@redhat.com> - 0.7.2-1
+* Fri Nov 29 2019 Giuseppe Scrivano <gscrivan@redhat.com> - 0.7.2-1
 - bump to v0.7.2
 
 * Thu Nov 07 2019 Giuseppe Scrivano <gscrivan@redhat.com> - 0.7-1
