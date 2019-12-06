@@ -4,7 +4,7 @@
 
 # Used for comparing with latest upstream tag
 # to decide whether to autobuild (non-rawhide only)
-%global built_tag v0.7
+%global built_tag v0.7.2
 
 Name: fuse-overlayfs
 Version: 0.7.2
@@ -67,6 +67,10 @@ modprobe fuse > /dev/null 2>&1 || :
 %{_modulesloaddir}/fuse-overlayfs.conf
 
 %changelog
+* Fri Dec 06 2019 RH Container Bot <rhcontainerbot@fedoraproject.org> - 0.7.2-2
+- bump to v0.7.2
+- autobuilt 8c59873
+
 * Fri Nov 29 2019 Giuseppe Scrivano <gscrivan@redhat.com> - 0.7.2-1
 - bump to v0.7.2
 
