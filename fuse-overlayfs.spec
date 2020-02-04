@@ -1,10 +1,10 @@
-%global git0 https://github.com/containers/%{name}
-%global commit0 99d49d54aea94fea4e57ef5287eaa9e1e092de7f
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%define git0 https://github.com/containers/%{name}
+%define commit0 99d49d54aea94fea4e57ef5287eaa9e1e092de7f
+%define shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 # Used for comparing with latest upstream tag
 # to decide whether to autobuild (non-rawhide only)
-%global built_tag v0.7.5
+%define built_tag v0.7.5
 
 Name: fuse-overlayfs
 Version: 0.7.5
