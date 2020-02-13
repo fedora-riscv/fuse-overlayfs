@@ -6,9 +6,7 @@
 # to decide whether to autobuild (non-rawhide only)
 %define built_tag v0.7.6
 
-%if ! 0%{?_modulesloaddir}
-%define _modulesloaddir %{_usr}/lib/modules-load.d
-%endif
+%{!?_modulesloaddir:%global _modulesloaddir %{_usr}/lib/modules-load.d}
 
 Name: fuse-overlayfs
 Version: 0.7.6
