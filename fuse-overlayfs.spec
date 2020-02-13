@@ -5,6 +5,8 @@
 # Used for comparing with latest upstream tag
 # to decide whether to autobuild (non-rawhide only)
 %define built_tag v0.7.6
+%define built_tag_strip %(b=%{built_tag}; echo ${b:1})
+%define download_url https://github.com/containers/%{name}/archive/%{built_tag}.tar.gz
 
 Name: fuse-overlayfs
 Version: 0.7.6
@@ -12,7 +14,7 @@ Release: 2%{?dist}
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
 URL: %{git0}
-Source0: %{git0}/archive/%{commit0}/%{name}-%{shortcommit0}.tar.gz
+Source0: %{download_url}
 BuildRequires: autoconf
 BuildRequires: automake
 BuildRequires: fuse3-devel
@@ -39,7 +41,7 @@ building other packages which use import path with
 %{import_path} prefix.
 
 %prep
-%autosetup -Sgit -n %{name}-%{commit0}
+%autosetup -Sgit -n %{name}-%{built_tag_strip}
 
 %build
 ./autogen.sh
