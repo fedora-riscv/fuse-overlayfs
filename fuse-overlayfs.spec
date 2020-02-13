@@ -8,6 +8,10 @@
 %define built_tag_strip %(b=%{built_tag}; echo ${b:1})
 %define download_url https://github.com/containers/%{name}/archive/%{built_tag}.tar.gz
 
+%if ! 0%{?_modulesloaddir}
+%define _modulesloaddir %{_usr}/lib/modules-load.d
+%endif
+
 Name: fuse-overlayfs
 Version: 0.7.6
 Release: 2%{?dist}
@@ -21,7 +25,9 @@ BuildRequires: fuse3-devel
 BuildRequires: gcc
 BuildRequires: git
 BuildRequires: make
+%if 0%{?fedora} && ! 0%{?centos}
 BuildRequires: systemd-rpm-macros
+%endif
 Requires: kmod
 Provides: bundled(gnulib) = cb634d40c7b9bbf33fa5198d2e27fdab4c0bf143
 Requires: fuse3
