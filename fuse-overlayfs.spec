@@ -6,6 +6,10 @@
 # to decide whether to autobuild (non-rawhide only)
 %define built_tag v0.7.6
 
+%if ! 0%{?_modulesloaddir}
+%define _modulesloaddir %{_usr}/lib/modules-load.d
+%endif
+
 Name: fuse-overlayfs
 Version: 0.7.6
 Release: 2.0.dev.git%{shortcommit0}%{?dist}
@@ -19,7 +23,9 @@ BuildRequires: fuse3-devel
 BuildRequires: gcc
 BuildRequires: git
 BuildRequires: make
+%if 0%{?fedora} && ! 0%{?centos}
 BuildRequires: systemd-rpm-macros
+%endif
 Requires: kmod
 Provides: bundled(gnulib) = cb634d40c7b9bbf33fa5198d2e27fdab4c0bf143
 Requires: fuse3
