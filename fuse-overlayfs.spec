@@ -9,7 +9,7 @@
 %{!?_modulesloaddir:%global _modulesloaddir %{_usr}/lib/modules-load.d}
 
 Name: fuse-overlayfs
-Version: 0.7.7
+Version: 0.7.8
 Release: 2.0.dev.git%{shortcommit0}%{?dist}
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
@@ -71,6 +71,10 @@ modprobe fuse > /dev/null 2>&1 || :
 %{_modulesloaddir}/fuse-overlayfs.conf
 
 %changelog
+* Tue Mar 17 2020 RH Container Bot <rhcontainerbot@fedoraproject.org> - 0.7.8-2.0.dev.gitce61c7e
+- bump to 0.7.8
+- autobuilt 5f666c1
+
 * Mon Mar 16 2020 RH Container Bot <rhcontainerbot@fedoraproject.org> - 0.7.7-2.0.dev.gitce61c7e
 - bump to 0.7.7
 - autobuilt 6cb22ea
