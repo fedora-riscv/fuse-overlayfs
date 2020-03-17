@@ -1,18 +1,18 @@
 %define git0 https://github.com/containers/%{name}
-%define commit0 ce61c7e9552190afd1bb04a8bf7e62645aac1c2c
+%define commit0 8f15388c6f21fa8b0c29969609a55e784db3d561
 %define shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 # Used for comparing with latest upstream tag
 # to decide whether to autobuild (non-rawhide only)
-%define built_tag v0.7.6
+%define built_tag v0.7.7
 %define built_tag_strip %(b=%{built_tag}; echo ${b:1})
 %define download_url https://github.com/containers/%{name}/archive/%{built_tag}.tar.gz
 
 %{!?_modulesloaddir:%global _modulesloaddir %{_usr}/lib/modules-load.d}
 
 Name: fuse-overlayfs
-Version: 0.7.6
-Release: 2.0.dev.git%{shortcommit0}%{?dist}
+Version: 0.7.7
+Release: 1%{?dist}
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
 URL: %{git0}
@@ -73,6 +73,9 @@ modprobe fuse > /dev/null 2>&1 || :
 %{_modulesloaddir}/fuse-overlayfs.conf
 
 %changelog
+* Tue Mar 17 2020 RH Container Bot <rhcontainerbot@fedoraproject.org> - 0.7.7-1
+- autobuilt v0.7.7
+
 * Tue Feb 04 2020 RH Container Bot <rhcontainerbot@fedoraproject.org> - 0.7.6-2.0.dev.gitce61c7e
 - bump to 0.7.6
 - autobuilt ce61c7e
