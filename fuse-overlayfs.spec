@@ -10,8 +10,6 @@
 
 %{!?_modulesloaddir:%global _modulesloaddir %{_usr}/lib/modules-load.d}
 
-%{!?_modulesloaddir:%global _modulesloaddir %{_usr}/lib/modules-load.d}
-
 Name: fuse-overlayfs
 Version: 0.7.8
 Release: 1%{?dist}
