@@ -81,4 +81,8 @@
 /v1.0.0.tar.gz
 /v1.1.0.tar.gz
 /v1.1.1.tar.gz
+<<<<<<< HEAD
 >>>>>>> 2ec5dd0... fuse-overlayfs-1.1.1-1
+=======
+/v1.1.2.tar.gz
+>>>>>>> 65b4ee5... fuse-overlayfs-1.1.2-1

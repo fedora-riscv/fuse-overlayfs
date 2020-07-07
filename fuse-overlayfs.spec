@@ -1,23 +1,18 @@
-<<<<<<< HEAD
-%global git0 https://github.com/containers/%{name}
-%global commit0 800011be8fdffa35f674c984beaeff69d2a5a9f0
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-
 # Used for comparing with latest upstream tag
 # to decide whether to autobuild (non-rawhide only)
-%define built_tag v1.1.1
+%define built_tag v1.1.2
 %define built_tag_strip %(b=%{built_tag}; echo ${b:1})
 %define download_url https://github.com/containers/%{name}/archive/%{built_tag}.tar.gz
 
 %{!?_modulesloaddir:%global _modulesloaddir %{_usr}/lib/modules-load.d}
 
 Name: fuse-overlayfs
-Version: 1.1.1
+Version: 1.1.2
 Release: 1%{?dist}
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
 URL: %{git0}
-Source0: %{git0}/archive/%{commit0}/%{name}-%{shortcommit0}.tar.gz
+Source0: %{download_url}
 BuildRequires: autoconf
 BuildRequires: automake
 BuildRequires: fuse3-devel
@@ -46,7 +41,7 @@ building other packages which use import path with
 %{import_path} prefix.
 
 %prep
-%autosetup -Sgit -n %{name}-%{commit0}
+%autosetup -Sgit -n %{name}-%{built_tag_strip}
 
 %build
 ./autogen.sh
@@ -74,14 +69,14 @@ modprobe fuse > /dev/null 2>&1 || :
 %{_modulesloaddir}/fuse-overlayfs.conf
 
 %changelog
-* Sat Jun 20 2020 RH Container Bot <rhcontainerbot@fedoraproject.org> - 1.1.1-1
-- autobuilt v1.1.1
+* Tue Aug 25 2020 RH Container Bot <rhcontainerbot@fedoraproject.org> - 1.1.2-1
+- autobuilt v1.1.2
 
 * Tue Jul 21 2020 Tom Stellard <tstellar@redhat.com> - 1.1.0-10.dev.git800011b
 - Use make macros
 - https://fedoraproject.org/wiki/Changes/UseMakeBuildInstallMacro
 
-* Mon Jul 20 07:09:14 GMT 2020 RH Container Bot <rhcontainerbot@fedoraproject.org> - 1.1.0-9.dev.git800011b
+* Mon Jul 20 2020 RH Container Bot <rhcontainerbot@fedoraproject.org> - 1.1.0-9.dev.git800011b
 - autobuilt 800011b
 
 * Mon Jun 29 2020 RH Container Bot <rhcontainerbot@fedoraproject.org> - 1.1.0-8.dev.gitfb8b3e0
