@@ -10,7 +10,7 @@
 
 Name: fuse-overlayfs
 Version: 1.1.0
-Release: 9.dev.git%{shortcommit0}%{?dist}
+Release: 10.dev.git%{shortcommit0}%{?dist}
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
 URL: %{git0}
@@ -51,7 +51,7 @@ building other packages which use import path with
 %{__make}
 
 %install
-make DESTDIR=%{buildroot} install
+%make_install
 install -d %{buildroot}%{_modulesloaddir}
 echo fuse > %{buildroot}%{_modulesloaddir}/fuse-overlayfs.conf
 
@@ -71,6 +71,10 @@ modprobe fuse > /dev/null 2>&1 || :
 %{_modulesloaddir}/fuse-overlayfs.conf
 
 %changelog
+* Tue Jul 21 2020 Tom Stellard <tstellar@redhat.com> - 1.1.0-10.dev.git800011b
+- Use make macros
+- https://fedoraproject.org/wiki/Changes/UseMakeBuildInstallMacro
+
 * Mon Jul 20 07:09:14 GMT 2020 RH Container Bot <rhcontainerbot@fedoraproject.org> - 1.1.0-9.dev.git800011b
 - autobuilt 800011b
 
