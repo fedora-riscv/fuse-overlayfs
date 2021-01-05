@@ -1,5 +1,5 @@
 %global git0 https://github.com/containers/%{name}
-%global commit0 bccc81eb8e32cd9dc20bcc24614bb3f80c7c5a7e
+%global commit0 bfe6d5e789c9108c7b0e1bb21895873d8408f99f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 # Used for comparing with latest upstream tag
@@ -71,6 +71,10 @@ modprobe fuse > /dev/null 2>&1 || :
 %{_modulesloaddir}/fuse-overlayfs.conf
 
 %changelog
+* Tue Jan  5 2021 RH Container Bot <rhcontainerbot@fedoraproject.org> - 1.3+dev-2.dev.gitbfe6d5e
+- bump to 1.3
+- autobuilt bfe6d5e
+
 * Mon Dec 21 2020 RH Container Bot <rhcontainerbot@fedoraproject.org> - 1.3+dev-2.dev.gitbccc81e
 - bump to 1.3
 - autobuilt bccc81e
