@@ -1,13 +1,13 @@
 # Used for comparing with latest upstream tag
 # to decide whether to autobuild (non-rawhide only)
-%define built_tag v1.3.0
+%define built_tag v1.4.0
 %define built_tag_strip %(b=%{built_tag}; echo ${b:1})
 %define download_url https://github.com/containers/%{name}/archive/%{built_tag}.tar.gz
 
 %{!?_modulesloaddir:%global _modulesloaddir %{_usr}/lib/modules-load.d}
 
 Name: fuse-overlayfs
-Version: 1.3.0
+Version: 1.4.0
 Release: 1%{?dist}
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
@@ -69,6 +69,9 @@ modprobe fuse > /dev/null 2>&1 || :
 %{_modulesloaddir}/fuse-overlayfs.conf
 
 %changelog
+* Fri Jan 22 2021 RH Container Bot <rhcontainerbot@fedoraproject.org> - 1.4.0-1
+- autobuilt v1.4.0
+
 * Wed Nov 25 2020 RH Container Bot <rhcontainerbot@fedoraproject.org> - 1.3.0-1
 - autobuilt v1.3.0
 
