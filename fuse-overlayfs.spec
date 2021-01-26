@@ -10,7 +10,7 @@
 
 Name: fuse-overlayfs
 Version: 1.4+dev
-Release: 2.dev.git%{shortcommit0}%{?dist}
+Release: 3.dev.git%{shortcommit0}%{?dist}
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
 URL: %{git0}
@@ -71,6 +71,9 @@ modprobe fuse > /dev/null 2>&1 || :
 %{_modulesloaddir}/fuse-overlayfs.conf
 
 %changelog
+* Tue Jan 26 2021 Fedora Release Engineering <releng@fedoraproject.org> - 1.4+dev-3.dev.gitb104426
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
+
 * Mon Jan 25 2021 RH Container Bot <rhcontainerbot@fedoraproject.org> - 1.4+dev-2.dev.gitb104426
 - bump to 1.4
 - autobuilt b104426
