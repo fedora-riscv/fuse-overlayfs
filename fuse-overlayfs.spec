@@ -5,16 +5,18 @@
 # Used for comparing with latest upstream tag
 # to decide whether to autobuild (non-rawhide only)
 %define built_tag v1.4.0
+%define built_tag_strip %(b=%{built_tag}; echo ${b:1})
+%define download_url %{git0}/archive/%{built_tag}.tar.gz
 
 %{!?_modulesloaddir:%global _modulesloaddir %{_usr}/lib/modules-load.d}
 
 Name: fuse-overlayfs
-Version: 1.4+dev
-Release: 2.dev.git%{shortcommit0}%{?dist}
+Version: 1.4.0
+Release: 3%{?dist}
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
 URL: %{git0}
-Source0: %{git0}/archive/%{commit0}/%{name}-%{shortcommit0}.tar.gz
+Source0: %{download_url}
 BuildRequires: autoconf
 BuildRequires: automake
 BuildRequires: fuse3-devel
@@ -43,7 +45,7 @@ building other packages which use import path with
 %{import_path} prefix.
 
 %prep
-%autosetup -Sgit -n %{name}-%{commit0}
+%autosetup -Sgit -n %{name}-%{built_tag_strip}
 
 %build
 ./autogen.sh
@@ -71,6 +73,9 @@ modprobe fuse > /dev/null 2>&1 || :
 %{_modulesloaddir}/fuse-overlayfs.conf
 
 %changelog
+* Mon Mar 08 2021 Lokesh Mandvekar <lsm5@fedoraproject.org> - 1.4.0-3
+- built v1.4.0
+
 * Mon Feb 01 2021 RH Container Bot <rhcontainerbot@fedoraproject.org> - 1.4+dev-2.dev.gitee8ce2e
 - bump to 1.4
 - autobuilt ee8ce2e
