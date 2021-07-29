@@ -1,16 +1,16 @@
 %global git0 https://github.com/containers/%{name}
-%global commit0 c0e6cca6c7e86fda365fac20c74b3f828a666657
+%global commit0 f38c0b849c1b77a2595b4f5658f94f3d50749c6b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 # Used for comparing with latest upstream tag
 # to decide whether to autobuild (non-rawhide only)
-%define built_tag v1.6
+%define built_tag v1.7
 
 %{!?_modulesloaddir:%global _modulesloaddir %{_usr}/lib/modules-load.d}
 
 Name: fuse-overlayfs
-Version: 1.6
-Release: 5%{?dist}
+Version: 1.7
+Release: 1%{?dist}
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
 URL: %{git0}
@@ -71,6 +71,9 @@ modprobe fuse > /dev/null 2>&1 || :
 %{_modulesloaddir}/fuse-overlayfs.conf
 
 %changelog
+* Thu Jul 29 2021 Giuseppe Scrivano <gscrivan@redhat.com> - 1.7-1
+- build v1.7
+
 * Wed Jul 21 2021 Fedora Release Engineering <releng@fedoraproject.org> - 1.6-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
 
