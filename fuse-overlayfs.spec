@@ -1,15 +1,15 @@
 %global git0 https://github.com/containers/%{name}
-%global commit0 f38c0b849c1b77a2595b4f5658f94f3d50749c6b
+%global commit0 0d53568a131af3f31e3609fe2ff61d0b5970a25a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 # Used for comparing with latest upstream tag
 # to decide whether to autobuild (non-rawhide only)
-%define built_tag v1.7
+%define built_tag v1.7.1
 
 %{!?_modulesloaddir:%global _modulesloaddir %{_usr}/lib/modules-load.d}
 
 Name: fuse-overlayfs
-Version: 1.7
+Version: 1.7.1
 Release: 1%{?dist}
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
@@ -71,6 +71,9 @@ modprobe fuse > /dev/null 2>&1 || :
 %{_modulesloaddir}/fuse-overlayfs.conf
 
 %changelog
+* Tue Aug 10 2021 Giuseppe Scrivano <gscrivan@redhat.com> - 1.7.1-1
+- build v1.7.1
+
 * Thu Jul 29 2021 Giuseppe Scrivano <gscrivan@redhat.com> - 1.7-1
 - build v1.7
 
