@@ -1,18 +1,19 @@
+%global git0 https://github.com/containers/%{name}
+
 # Used for comparing with latest upstream tag
-# to decide whether to autobuild (non-rawhide only)
-%define built_tag v1.5.0
-%define built_tag_strip %(b=%{built_tag}; echo ${b:1})
-%define download_url https://github.com/containers/%{name}/archive/%{built_tag}.tar.gz
+# to decide whether to autobuild
+%global built_tag v1.7.1
+%global built_tag_strip %(b=%{built_tag}; echo ${b:1})
 
 %{!?_modulesloaddir:%global _modulesloaddir %{_usr}/lib/modules-load.d}
 
 Name: fuse-overlayfs
 Version: 1.7.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
 URL: %{git0}
-Source0: %{download_url}
+Source0: %{git0}/archive/%{built_tag}.tar.gz
 BuildRequires: autoconf
 BuildRequires: automake
 BuildRequires: fuse3-devel
@@ -69,6 +70,9 @@ modprobe fuse > /dev/null 2>&1 || :
 %{_modulesloaddir}/fuse-overlayfs.conf
 
 %changelog
+* Thu Sep 09 2021 Lokesh Mandvekar <lsm5@fedoraproject.org> - 1.7.1-2
+- use correct source tarball, fix autobuild macros
+
 * Tue Aug 10 2021 RH Container Bot <rhcontainerbot@fedoraproject.org> - 1.7.1-1
 - autobuilt v1.7.1
 
