@@ -1,12 +1,9 @@
 %global git0 https://github.com/containers/%{name}
-%global commit0 0d53568a131af3f31e3609fe2ff61d0b5970a25a
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 # Used for comparing with latest upstream tag
-# to decide whether to autobuild (non-rawhide only)
+# to decide whether to autobuild
 %define built_tag v1.7.1
 %define built_tag_strip %(b=%{built_tag}; echo ${b:1})
-%define download_url %{git0}/archive/%{built_tag}.tar.gz
 
 %{!?_modulesloaddir:%global _modulesloaddir %{_usr}/lib/modules-load.d}
 
@@ -16,7 +13,7 @@ Release: 1%{?dist}
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
 URL: %{git0}
-Source0: %{download_url}
+Source0: %{git0}/archive/%{built_tag}.tar.gz
 BuildRequires: autoconf
 BuildRequires: automake
 BuildRequires: fuse3-devel
