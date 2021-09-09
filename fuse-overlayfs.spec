@@ -1,20 +1,19 @@
 %global git0 https://github.com/containers/%{name}
-%global commit0 0d53568a131af3f31e3609fe2ff61d0b5970a25a
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 # Used for comparing with latest upstream tag
-# to decide whether to autobuild (non-rawhide only)
-%define built_tag v1.7.1
+# to decide whether to autobuild
+%global built_tag v1.7.1
+%global built_tag_strip %(b=%{built_tag}; echo ${b:1})
 
 %{!?_modulesloaddir:%global _modulesloaddir %{_usr}/lib/modules-load.d}
 
 Name: fuse-overlayfs
 Version: 1.7.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
 URL: %{git0}
-Source0: %{git0}/archive/%{commit0}/%{name}-%{shortcommit0}.tar.gz
+Source0: %{git0}/archive/%{built_tag}.tar.gz
 BuildRequires: autoconf
 BuildRequires: automake
 BuildRequires: fuse3-devel
@@ -43,7 +42,7 @@ building other packages which use import path with
 %{import_path} prefix.
 
 %prep
-%autosetup -Sgit -n %{name}-%{commit0}
+%autosetup -Sgit -n %{name}-%{built_tag_strip}
 
 %build
 ./autogen.sh
@@ -71,6 +70,9 @@ modprobe fuse > /dev/null 2>&1 || :
 %{_modulesloaddir}/fuse-overlayfs.conf
 
 %changelog
+* Thu Sep 09 2021 Lokesh Mandvekar <lsm5@fedoraproject.org> - 1.7.1-2
+- use correct source tarball, fix autobuild macros
+
 * Tue Aug 10 2021 Giuseppe Scrivano <gscrivan@redhat.com> - 1.7.1-1
 - build v1.7.1
 
