@@ -9,7 +9,7 @@
 
 Name: fuse-overlayfs
 Version: 1.7.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
 URL: %{git0}
@@ -70,6 +70,9 @@ modprobe fuse > /dev/null 2>&1 || :
 %{_modulesloaddir}/fuse-overlayfs.conf
 
 %changelog
+* Thu Sep 09 2021 Lokesh Mandvekar <lsm5@fedoraproject.org> - 1.7.1-2
+- use correct source tarball, fix autobuild macros
+
 * Tue Aug 10 2021 Giuseppe Scrivano <gscrivan@redhat.com> - 1.7.1-1
 - build v1.7.1
 
