@@ -1,30 +1,40 @@
 %global git0 https://github.com/containers/%{name}
 
 %global built_tag v1.8.2
-%global built_tag_strip %(b=%{built_tag}; echo ${b:1})
-%global gen_version %(b=%{built_tag_strip}; echo ${b/-/"~"})
 
 %{!?_modulesloaddir:%global _modulesloaddir %{_usr}/lib/modules-load.d}
 
 Name: fuse-overlayfs
-Version: %{gen_version}
+Version: 1.8.2
+%if "%{_vendor}" == "debbuild"
+Maintainer: Lokesh Mandvekar <lsm5@fedoraproject.org>
+License: GPL-3.0+
+Release: 0%{?dist}
+%else
 Release: %autorelease
-Summary: FUSE overlay+shiftfs implementation for rootless containers
 License: GPLv3+
-URL: %{git0}
-Source0: %{git0}/archive/%{built_tag}.tar.gz
+%endif
+Summary: FUSE overlay+shiftfs implementation for rootless containers
+URL: https://github.com/containers/%{name}
+Source0: %{url}/archive/%{built_tag}.tar.gz
 BuildRequires: autoconf
 BuildRequires: automake
+Requires: fuse3
+Requires: kmod
+%if "%{_vendor}" == "debbuild"
+BuildRequires: autoconf-archive
+BuildRequires: git
+BuildRequires: libfuse3-dev
+BuildRequires: m4
+BuildRequires: pkg-config
+%else
 BuildRequires: fuse3-devel
 BuildRequires: gcc
-BuildRequires: git
+BuildRequires: git-core
 BuildRequires: make
-%if 0%{?fedora} && ! 0%{?centos}
 BuildRequires: systemd-rpm-macros
-%endif
-Requires: kmod
 Provides: bundled(gnulib) = cb634d40c7b9bbf33fa5198d2e27fdab4c0bf143
-Requires: fuse3
+%endif
 
 %description
 %{summary}.
@@ -41,11 +51,11 @@ building other packages which use import path with
 %{import_path} prefix.
 
 %prep
-%autosetup -Sgit -n %{name}-%{built_tag_strip}
+%autosetup -Sgit
 
 %build
 ./autogen.sh
-./configure --prefix=%{_usr} --libdir=%{_libdir}
+./configure --prefix=%{_prefix} --libdir=%{_libdir}
 %{__make}
 
 %install
@@ -69,4 +79,6 @@ modprobe fuse > /dev/null 2>&1 || :
 %{_modulesloaddir}/fuse-overlayfs.conf
 
 %changelog
+%if "%{_vendor}" != "debbuild"
 %autochangelog
+%endif
