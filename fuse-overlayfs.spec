@@ -1,11 +1,11 @@
 %global git0 https://github.com/containers/%{name}
 
-%global built_tag v1.8.2
+%global built_tag v1.9
 
 %{!?_modulesloaddir:%global _modulesloaddir %{_usr}/lib/modules-load.d}
 
 Name: fuse-overlayfs
-Version: 1.8.2
+Version: 1.9
 %if "%{_vendor}" == "debbuild"
 Maintainer: Lokesh Mandvekar <lsm5@fedoraproject.org>
 License: GPL-3.0+
