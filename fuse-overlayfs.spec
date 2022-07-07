@@ -7,7 +7,7 @@
 Name: fuse-overlayfs
 Version: 1.9
 %if "%{_vendor}" == "debbuild"
-Maintainer: Lokesh Mandvekar <lsm5@fedoraproject.org>
+Packager: Lokesh Mandvekar <lsm5@fedoraproject.org>
 License: GPL-3.0+
 Release: 0%{?dist}
 %else
