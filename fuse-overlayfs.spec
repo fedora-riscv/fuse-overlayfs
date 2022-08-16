@@ -7,7 +7,7 @@
 Name: fuse-overlayfs
 Version: 1.9
 %if "%{_vendor}" == "debbuild"
-Packager: Lokesh Mandvekar <lsm5@fedoraproject.org>
+Packager: Podman Debbuild Maintainers <https://github.com/orgs/containers/teams/podman-debbuild-maintainers>
 License: GPL-3.0+
 Release: 0%{?dist}
 %else
