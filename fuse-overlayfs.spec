@@ -1,6 +1,6 @@
 %global git0 https://github.com/containers/%{name}
 
-%global built_tag v1.9
+%global built_tag_strip 1.9
 
 %{!?_modulesloaddir:%global _modulesloaddir %{_usr}/lib/modules-load.d}
 
@@ -16,7 +16,7 @@ License: GPLv3+
 %endif
 Summary: FUSE overlay+shiftfs implementation for rootless containers
 URL: https://github.com/containers/%{name}
-Source0: %{url}/archive/%{built_tag}.tar.gz
+Source0: %{url}/archive/v%{built_tag_strip}.tar.gz
 BuildRequires: autoconf
 BuildRequires: automake
 Requires: fuse3
@@ -51,7 +51,7 @@ building other packages which use import path with
 %{import_path} prefix.
 
 %prep
-%autosetup -Sgit
+%autosetup -Sgit %{name}-%{built_tag_strip}
 
 %build
 ./autogen.sh
