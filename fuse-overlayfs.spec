@@ -1,13 +1,13 @@
 %global git0 https://github.com/containers/%{name}
 
 %global built_tag v1.9
-%global built_tag_strip 1.9
+%global built_tag_strip %(b=%{built_tag}; echo ${b:1})
 %global gen_version %(b=%{built_tag_strip}; echo ${b/-/"~"})
 
 %{!?_modulesloaddir:%global _modulesloaddir %{_usr}/lib/modules-load.d}
 
 Name: fuse-overlayfs
-Version: 1.9
+Version: %{gen_version}
 Release: %autorelease
 License: GPLv3+
 Summary: FUSE overlay+shiftfs implementation for rootless containers
